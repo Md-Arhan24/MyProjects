@@ -1,7 +1,7 @@
 const User = require('../models/user.js');
 
 module.exports.getSingup = (req, res) => {
-  res.render("users/singup.ejs");
+ return res.render("users/singup.ejs");
 };
 
 module.exports.postSingup = async (req, res) => {
@@ -13,24 +13,24 @@ module.exports.postSingup = async (req, res) => {
     console.log(Orginaluser);
     req.login(Orginaluser, (err) => {
       req.flash("success", "Successfully registerd!");
-      res.redirect('/listings');
+      return res.redirect('/listings');
     });
   } catch (e) {
     req.flash("error", e.message);
-    res.redirect("/singup");
+    return res.redirect("/singup");
   }
 };
 
 module.exports.getLogin = (req, res) => {
   //here we dont have to keep / for /users/login so just keep user/login.ejs
-  res.render("users/login.ejs");
+  return res.render("users/login.ejs");
 };
 
 module.exports.postLogin = async (req, res) => {
     //all the login work is done by passport , here we just take the previous url page after login we redirect it to there
     req.flash("success", "Successfully login");
     let redirectu = res.locals.redirectUrl || "/listings";
-    res.redirect(redirectu);
+    return res.redirect(redirectu);
   };
 
 module.exports.getLogout =  (req, res, next) => {
@@ -41,6 +41,6 @@ module.exports.getLogout =  (req, res, next) => {
       return next(err);
     }
     req.flash("success", "Successfully log out");
-    res.redirect("/login");
+   return res.redirect("/login");
   });
 }
