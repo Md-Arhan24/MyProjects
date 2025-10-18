@@ -1,0 +1,129 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f3f3f3b6;
+  color: black;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+.logo a {
+  color: red;
+  coursor: pointer;
+}
+.navigations{
+  margin-right: 70px;
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#singup{
+  margin-left: 10px;
+  list-style: none;
+  text-decoration: none;
+  background-color: hsl(0, 0%, 100%);
+  color: black;
+  border: 1px solid black;
+  border-radius: 20%;
+  padding: 7px 5px;
+
+}
+#host {
+  text-decoration: none;
+  background-color: rgb(255, 255, 255, 0.9);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 8px 15px;
+  color: black;
+}
+#host:hover {
+  background-color: rgb(255, 255, 255, 0.3);
+
+  transition: 0.3s;
+}
+.line {
+  width: 20px;
+  height: 3px;
+  background-color: black;
+  margin: 3px 0;
+}
+
+  #filters form{
+    
+    display: flex;
+    flex-wrap: nowrap;
+    opacity: 0.7;
+    
+    
+    
+
+  }
+  #filters{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     position: sticky;
+    top: 4rem;
+    background-color:#f3f3f3b6;
+  }
+  .filter{
+    text-align: center;
+    margin-left: 1rem;
+  }
+  .filter:hover{
+    cursor: pointer;
+    opacity: 0.9;
+
+  }
+  .filter button{
+  all: unset;
+}
+.look{
+      background-color: rgb(255, 255, 255, 0.9);
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 8px 15px;
+    color: black;
+}
+/* style apply when screen size is below 1000 */
+@media screen and (max-width:1000px) {
+  .body{
+    background-color: black;
+  }
+  .hide{
+    display: none;
+  }
+  
+}
+.search form input{
+    text-decoration: none;
+      width: 22vw;
+    padding: 7px 13px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.search form{
+  padding:5px 10px
+}
+.hero{
+  background-color: #ff0000;
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    position: relative;
+    top: 0px;
+    left: 1px;
+}
+.hero:hover{
+  background-color: #ff0000a8;
+  cursor: pointer;
+}
+.search_icon{
+  display: inline;
+  margin-right: 2px;
+}

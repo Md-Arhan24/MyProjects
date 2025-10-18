@@ -1,0 +1,62 @@
+<% layout('/layouts/bilorplate.ejs') %>
+
+
+<body>
+  
+  <link rel="stylesheet" href="/style/index.css" />
+  <div class="section">
+    <% if(typeof state != 'undefined'){ %>
+      <h2>Popular places in <%= state %> ></h2>
+
+    <% } %>
+
+    <% if(states.length > 0){ %>
+
+    
+    <div class="stateLayout ">
+      <% for(d of states){ %>
+      <div class="card ">
+        <% let imgSrc = d.image && d.image.url ? d.image.url : d.image; %> <%
+        if(imgSrc) {%>
+        <img class="cardImg" id="<%= d._id %>" src="<%=imgSrc%>" alt="img" />
+
+        <% } %>
+        <div class="text">
+          <h5>flat in city <%= d.location %></h5>
+          <h6>price for 2 night <%= d.price %><i class="gst" >&nbsp; &nbsp; +18%GST</i></h6>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <%}%>
+  </div>
+  <div class="section">
+    <h2>Popular places in other countr ></h2>
+
+    <div class="stateLayout">
+      <% for(d of dataOthers){ %>
+      <div class="card">
+        <% let imgSrc = d.image && d.image.url ? d.image.url : d.image; %> <%
+        if(imgSrc) {%>
+        <img id="<%= d._id %>" class="cardImg" src="<%=imgSrc%>" alt="img" />
+
+        <% } %>
+        <div class="text">
+          <h5>flat in city <%= d.location %></h5>
+          <h6>price for 2 night <%= d.price %>&#x20B9;<i class="gst" >&nbsp; &nbsp; +18%GST</i></h6>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+
+  <script>
+    let ele = document.querySelectorAll(".cardImg");
+
+    for (e of ele) {
+      e.addEventListener("click", (e) => {
+        window.location.href = `/listings/${e.target.id}`;
+      });
+    }
+  </script>
+</body>

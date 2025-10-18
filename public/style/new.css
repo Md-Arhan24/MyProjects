@@ -1,0 +1,48 @@
+
+.container{
+  min-height: 115vh;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60vh;
+  gap: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+.hero {
+  background-color: #ff0000 !important;
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    position: relative;
+    top: 0px;
+    left: 1px;
+}
+.hero:hover{
+  background-color: #ff0000a8;
+  cursor: pointer;
+}
+input,
+textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #45a049;
+}
+
+#form-btn{
+  margin-top: -20px !important;
+}

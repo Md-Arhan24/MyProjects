@@ -1,0 +1,185 @@
+form button {
+  position: absolute;
+  top: 70px;
+  right: 90px;
+  background-color: rgb(225, 20, 20);
+  border-radius: 10%;
+  color: white;
+  cursor: pointer;
+  padding : 10px 15px;
+}
+a button{
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 10%;
+  color: white;
+  padding: 10px 15px;
+}
+a button:hover, form button:hover{
+  background-color: rgb(0, 0, 0,0.6);
+  padding: 10.5px 15.5px;
+}
+.leftImg img {
+  width: 45vw;
+  height: 65vh;
+  border-radius: 1rem;
+}
+.showCon {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 71vh;
+}
+.rightImg{
+  margin-left: 25px;
+}
+.cardEdit{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 70%;
+  
+  
+  margin: 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 30vw;
+}
+.just_align{
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+.cardEdit table,.cardEdit th, .cardEdit td{
+  border: 1px solid black;
+  padding-bottom: 5%;
+  padding-right: 5%;
+  padding-top: 3%;
+  text-align: center;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+
+.cardEdit button{
+  background-color: rgb(233, 0, 0);
+  border-radius: 10%;
+  color: white;
+  cursor: pointer;
+  width: 60%;
+  height: 20px;
+  margin: 10px;
+  padding: 15px;
+}
+.cardEdit button:hover{
+  background-color: rgb(233, 0, 0,0.9);
+  padding: 15.5px;
+}
+.cardEdit button h3{
+  margin-top: -16px;
+}
+
+.review{
+  display: flex;
+  
+  border: 1px solid black;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: auto;
+  max-height: 300px;
+  overflow-y: scroll;
+  margin: 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 30vw;
+  
+  scrollbar-width: none;
+}
+#r-btn{
+  position: static;
+
+}
+.inputs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+.comment{
+  /* display: flex;
+  /* justify-content: start; */
+  /* align-items: start; */
+  
+}
+#reviewSection{
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.showReviews{
+  border: 1px solid black;
+  width: 40vw;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  width: 55vw;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.rv{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  
+  align-items: center;
+
+}
+.rv-text{
+  /* text-align: center;
+   */
+  border: 1px solid black;
+  width: 43%;
+  margin: 10px 5px;
+  background-color:  rgba(255, 255, 255, 0.546);
+  border-radius: 20px;
+
+  
+}
+.rv-text p, .rv-text b{
+  margin-left: 10px;
+}
+
+.delete-review{
+  position: absolute;
+  margin-left: 29%;
+  margin-top: -5%;
+  color: white;
+  border-radius: 50%;
+  background-color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#delete-rv{
+  height: 25px;
+  width: 25px;
+  margin: 0;
+  padding: 0;
+}
+#map{
+  height: 51vh;
+  width:60vw;
+  margin: 15px;
+  margin-bottom: 10vh;
+  border: 2px solid black;
+
+}

@@ -1,0 +1,30 @@
+<% layout('./layouts/bilorplate.ejs') %>
+<div class="error">
+    <div class="image">
+        <img src="/assessts/error.png" alt="">
+    </div>
+    <div class="message">
+        <h2><%= message %></h2>
+        <h4>Status code : <%= statusCode %></h4>
+    </div>
+</div>
+<%- include('./includes/footer.ejs') %>
+<style>
+    .error {
+        display: flex;
+        
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .error .image img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .error .message {
+        font-size: 24px;
+        color: #333;
+        margin-top: 20px;
+    }

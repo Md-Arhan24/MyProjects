@@ -1,0 +1,81 @@
+<% layout('/layouts/bilorplate.ejs') %>
+<body>
+  <link rel="stylesheet" href="/style/new.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <div
+  class="d-flex justify-content-center align-items-center"
+  style="min-height: 100vh"
+>
+  <form action="/listings/edit/<%= data._id %>" method="post"  class="needs-validation p-3 shadow rounded"
+    novalidate style="width: 60vh; height: 80vh; max-width: 450px; margin: 0 auto; background: #fff" enctype="multipart/form-data">
+     <div class="mb-2 form-control">
+      <label for="title" class="form-label">Title</label>
+       <input type="text"  id="title"name="title" placeholder="<%= data.title %>" required />
+      <div class="invalid-feedback">Please title cant be empty.</div>
+    </div>
+       
+     <div class="mb-2 d-flex justify-content-start align-items-center from-control">
+      <label for="Description" class="form-label">Description</label>
+      <textarea class="form-label" name="description" id="Description"><%= data.description %> required></textarea>
+      <div class="invalid-feedback">Describe something about place.</div>
+      </div>
+      <div class="showImgae" style="height: 100px; width: 100px;">
+        <% let srcImg = data.image && data.image.url ? data.image.url : data.image; %>
+        <img src="<%= url %>" alt="show image" height="100px" width="160px">
+      </div>
+
+      <div class="mb-2 from-control">
+      <label for="Image" class="form-label">Upload New Image</label>
+      <input type="file" name="image" placeholder="image" id="image"/>
+      <div class="invalid-feedback">image must be there</div>
+      </div>
+      <div class="mb-2 from-control">
+         <label for="price" class="form-label">Price</label>
+         <input type="number" id="price" name="price" placeholder="<%= data.price %>" required/>
+        <div class="invalid-feedback">please enter the price</div>
+      </div>
+      <div class="mb-2 from-control">
+         <label for="location" class="form-label">Location</label>
+         <input type="text" id="location" name="location" placeholder="<%= data.location %>" required />
+        <div class="invalid-feedback">enter the location</div>
+      </div>
+      <div class="mb-2 from-control">
+         <label for="country" class="form-label">Country</label>
+         <input type="text"  id="country"name="country" placeholder="<%= data.country %>" required/>
+        <div class="invalid-feedback">enter the country</div>
+      </div>
+      
+      <div class="mb-2">
+        
+        <input type="hidden" name="_id" value="<%= data._id %>" />
+      </div>
+            <button id="form-btn" class="btn btn-primary w-100 mt-2" type="submit">Edit post</button>
+    </form>
+    </div>
+    <style>
+  .custom-focus:focus {
+    border: 2px solid #0d6efd !important;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  }
+</style>
+<script>
+  // Bootstrap custom validation
+  (() => {
+    "use strict";
+    const forms = document.querySelectorAll(".needs-validation");
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>
+</body>

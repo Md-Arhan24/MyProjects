@@ -1,0 +1,165 @@
+<% layout('/layouts/bilorplate.ejs') %>
+<!-- flash -->
+ <% if(error.length > 0){ %>
+  <div
+  class="alert alert-warning alert-dismissible fade show col-6 offset-3"
+  role="alert"
+  style="
+    width: 44vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  "
+>
+  <Strong><%= error %></Strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+ <%}%>
+<%= review %>
+<body>
+  <link rel="stylesheet" href="/style/show.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <%if(userInfo && oneData.owner._id.equals(userInfo._id)){%>
+       <a href="/listings/edit/<%= oneData._id %>" id="edit"><button>edit</button></a>
+  <form action="/listings/<%= oneData._id %>?_method=DELETE" method="post" id="delete">
+    <button type="submit"><b>Delete</b></button>
+  </form>
+  <%}%>
+  <h3>DETAILS ABOUT <%= oneData.title%> :</h3>
+  <div class="showCon">
+    <div class="leftImg">
+      <% let imgSrc = oneData.image.url && oneData.image ? oneData.image.url :
+      oneData.image %>
+      <img src="<%= imgSrc %>" alt="image" />
+    </div>
+    <div class="rightImg">
+
+      <h2><%= oneData.title %></h2>
+      <h4>Listed By: <%= oneData.owner.username %></h4>
+      <b><p><%= oneData.description %></p></b>
+
+      <div class="cardEdit">
+        <div class="just_align">
+        <h3>&#x20B9;<%= oneData.price %></h3>
+        <h5>for 2 nights</h5>
+        </div>
+        <table>
+          <th>check-in</th>
+          <th>check-out</th>
+          <% const now = new Date(); const twoDaysLater = new Date(now.getTime()
+          + 2 * 24 * 60 * 60 * 1000); %>
+          <tr>
+            <td><%= new Date().toDateString() %></td>
+            <td><%= twoDaysLater.toDateString() %></td>
+          </tr>
+        </table>
+        <button><h3>Reserv</h3></button>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div id="reviewSection">
+    <%if(userInfo){%>
+      <div class="review">
+    <h2>Add Review :</h2>
+    <form  novalidate action="/listings/<%= oneData._id %>/review" method="POST" id="review-form" class="needs-validation">
+      <div class="inputs">
+        
+        <div class="comment">
+          <label for="comment">Comment :</label><br>
+          <textarea name="comment" id="comment" cols="30" rows="4" placeholder="share your feelings" required></textarea>
+          <div class="invalid-feedback">review cant be empty</div>
+        </div>
+         <legend>First rating:</legend>
+        <fieldset class="starability-slot">
+ 
+  <input type="radio" id="no-rate" class="input-no-rate" name="range" value="1" checked aria-label="No rating." />
+  <input type="radio" id="first-rate1" name="range" value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name="range" value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name="range" value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name="range" value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name="range" value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset>
+        <button type="submit" id="r-btn"> Add </button>
+      </div>
+      
+    </form>
+  </div>
+    <%}%>
+  <%if(oneData.reviews.length > 0){%>
+  <div class="showReviews">
+     <h2>Reviews :</h2>
+    <div class="rv">
+     
+     <% oneData.reviews.forEach(ele => { %> 
+      <div class="rv-text">
+        <form action="/listings/<%= oneData._id %>/review/<%= ele._id %>?_method=DELETE" method="POST" >
+            <div class="delete-review"><button id='delete-rv'type="submit">X</button></div>
+        </form>
+        
+        <div class="text-review">
+          <b><%= ele.author.username %></b>
+          <p class="starability-result" data-rating="<%= ele.range %>"> </p>
+        <b><%= ele.createdAt.toString().slice(0,24)%></b>
+        <p><%= ele.comment %></p>
+        </div>
+      </div>
+      
+      <% });%>
+    </div>
+  </div>
+  <% } %>
+  </div>
+  <div id="map" class="col-8 offset-3 mb-3" >Where you will be</div>
+
+  <script>
+  // Bootstrap custom validation
+  (() => {
+    "use strict";
+    const forms = document.querySelectorAll(".needs-validation");
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>
+<script>
+  var map = L.map('map').setView([28.6139,77.209], 5); // Centered on Madhya Pradesh
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+</script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
+
+</body>

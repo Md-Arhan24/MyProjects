@@ -1,0 +1,66 @@
+<% layout('/layouts/bilorplate.ejs') %>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+/>
+<div class="row mt-3">
+  <div class="col-6 offset-3">
+    <form action="/singup" method="post" class="needs-validation" novalidate>
+      <div class="mb-2">
+        <label for="username" class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control custom-focus"
+          id="username"
+          name="username"
+          required
+        />
+        <di class="valid-feedback">Its look Good!</di>
+        <div class="invalid-feedback">Please Enter the username</div>
+      </div>
+      <div class="mb-2">
+        <label for="email" class="form-label">E-mail</label>
+        <input
+          type="email"
+          class="form-control custom-focus"
+          id="email"
+          name="email"
+          required
+        />
+        <div class="invalid-feedback">email is required</div>
+      </div>
+      <div class="mb-2">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control custom-focus"
+          id="password"
+          name="password"
+          required
+        />
+        <div class="invalid-feedback">enter password</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+<script>
+  // Bootstrap custom validation
+  (() => {
+    "use strict";
+    const forms = document.querySelectorAll(".needs-validation");
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>

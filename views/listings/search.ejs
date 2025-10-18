@@ -1,0 +1,29 @@
+<% layout('/layouts/bilorplate.ejs') %>
+<!-- <% layout('/layouts/bilorplate.ejs') %> -->
+<body>
+    <link rel="stylesheet" href="style/index.css">
+    <div class="stateLayout">
+      <% for(d of dataOthers){ %>
+      <div class="card">
+        <% let imgSrc = d.image && d.image.url ? d.image.url : d.image; %> <%
+        if(imgSrc) {%>
+        <img id="<%= d._id %>" class="cardImg" src="<%=imgSrc%>" alt="img" />
+
+        <% } %>
+        <div class="text">
+          <h5>flat in city <%= d.location %></h5>
+          <h6>price for 2 night <%= d.price %>&#x20B9;</h6>
+        </div>
+      </div>
+      <% } %>
+    </div>
+     <script>
+    let ele = document.querySelectorAll(".cardImg");
+
+    for (e of ele) {
+      e.addEventListener("click", (e) => {
+        window.location.href = `/listings/${e.target.id}`;
+      });
+    }
+  </script>
+</body>

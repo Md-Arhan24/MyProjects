@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/style/flash.css">
+<% if(success && success.length) {%>
+    <div class="alert alert-success col-6 offset-3" role="alert">
+        <h3><%= success %></h3>
+</div>
+<% } %>
+
+
+<% if(notfound && notfound.length) {%>
+    <div class="alert alert-danger col-6 offset-3" role="alert">
+        <h3><%= notfound %></h3>
+</div>
+<% } %>
