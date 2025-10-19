@@ -68,8 +68,9 @@ module.exports.editPostListings = async (req, res) => {
     data_to_update.image = { url, filename };
     console.log(data_to_update);
     await data_to_update.save();
-    return res.redirect(`/listings/${id}`);
   }
+  req.flash("success","Updated Successfully!");
+  return res.redirect(`/listings/${id}`);
 };
 
 module.exports.deleteListings = async (req, res) => {

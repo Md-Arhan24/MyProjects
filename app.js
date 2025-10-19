@@ -29,7 +29,7 @@ let store = MongoStore.create({
   },
   touchAfter: 24*3600,//in seconds
 });
-store.on("error",() =>{
+store.on("error",(err) =>{
   console.log("error occured in sotre session ",err);
 });
 

@@ -1,5 +1,6 @@
 const Listings = require("./models/listing.js");
 const Review = require("./models/review.js");
+const WrapAsync = require('./utils/wrapAsync.js');
 const { listingValidate, reviewValidate ,listingValidateWithId} = require("./schema.js");
 const ExpressError = require("./utils/ExpressError");
 
@@ -22,7 +23,7 @@ module.exports.redirectUrl = (req, res, next) => {
   next();
 };
 
-module.exports.isOwner = async (req, res, next) => {
+module.exports.isOwner = WrapAsync(async (req, res, next) => {
   let id = req.params.id;
   let list = await Listings.findById(id);
   if (!list.owner.equals(res.locals.userInfo._id)) {
@@ -30,9 +31,9 @@ module.exports.isOwner = async (req, res, next) => {
     return res.redirect(`/listings/${id}`);
   }
   next();
-};
+});
 
-module.exports.isAuthor = async (req, res, next) => {
+module.exports.isAuthor = WrapAsync(async (req, res, next) => {
   let { id, reviewid } = req.params;
   let auth = await Review.findById(reviewid);
 
@@ -41,7 +42,7 @@ module.exports.isAuthor = async (req, res, next) => {
     return res.redirect(`/listings/${id}`);
   }
   next();
-};
+});
 
 module.exports.validateListing = (req, res, next) => {
   if (!req.body) {

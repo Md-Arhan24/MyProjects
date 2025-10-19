@@ -12,6 +12,10 @@ module.exports.postSingup = async (req, res) => {
     const Orginaluser = await User.register(registedUser, password);
     console.log(Orginaluser);
     req.login(Orginaluser, (err) => {
+      if(err){
+        req.flash("error","error occured");
+        return res.redirect('/singup');
+      }
       req.flash("success", "Successfully registerd!");
       return res.redirect('/listings');
     });
@@ -20,6 +24,7 @@ module.exports.postSingup = async (req, res) => {
     return res.redirect("/singup");
   }
 };
+
 
 module.exports.getLogin = (req, res) => {
   //here we dont have to keep / for /users/login so just keep user/login.ejs
