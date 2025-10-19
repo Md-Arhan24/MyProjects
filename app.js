@@ -94,7 +94,7 @@ app.get("/registerd", async (req, res) => {
   });
 
   let createUser = await User.register(fakeUser, "password123");
-  res.send(createUser);
+  return res.send(createUser);
 });
 
 //connect to database
@@ -119,7 +119,7 @@ async function main() {
 
 app.use((err, req, res, next) => {
   let { statusCode = 404, message } = err;
-  res.render("error", { statusCode, message });
+  return res.render("error", { statusCode, message });
 });
 
 app.listen(port, () => {
