@@ -6,7 +6,7 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
-const LocalStratagey = require("passport-local");
+const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const WrapAsync = require('./utils/wrapAsync.js');
 
@@ -54,7 +54,7 @@ app.use(session(sessionOptions));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStratagey(User.authenticate()));
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
