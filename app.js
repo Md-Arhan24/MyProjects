@@ -73,7 +73,10 @@ app.use(method_Override("_method"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views")); //to tell where is view folder when run from outside
 app.use(express.static(path.join(__dirname, "public"))); //to tell where is public folder when run from outside
-
+app.use((req, res, next) => {
+  res.locals.userInfo = req.user;
+  next();
+});
 app.use("/listings", listingRouter);
 app.use("/search",searchRouter);
 app.use('/',userRouter);

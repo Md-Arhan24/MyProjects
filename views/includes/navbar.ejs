@@ -5,22 +5,28 @@
     <a href="/listings"><%- include('../symbols/fulllogo.ejs') %></a>
   </div>
   <div class="search">
-          <form class="d-flex" role="search" action="/search" method="post">
-        <input class="form-control me-2" type="search" placeholder="hotels in jaipur..." name="place" aria-label="Search"/>
-        <button class="btn btn-outline-success hero" type="submit"><i class="fa-solid fa-magnifying-glass search_icon"></i>Search</button>
-      </form>
-
+    <form class="d-flex" role="search" action="/search" method="post">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="hotels in jaipur..."
+        name="place"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success hero" type="submit">
+        <i class="fa-solid fa-magnifying-glass search_icon"></i>Search
+      </button>
+    </form>
   </div>
   <div class="navigations">
     <a href="/new" id="host">BECOME A HOST</a>
-    
-
-    <%if(!userInfo){%>
-    <a href="/singup" id="singup"> Sing up </a>
-    <a href="/login" id="singup"> Log in </a>
-    <%}%> <% if(userInfo){%>
-    <a href="/logout" id="singup"> Log out </a>
-    <% } %>
+    <% if (typeof userInfo === 'undefined' || !userInfo) { %>
+    <a href="/signup">Sign up</a>
+    <a href="/login">Log in</a>
+    <% } else { %>
+    <a href="/logout">Log out</a>
+     <% } %> 
+     
   </div>
 </nav>
 <div id="filters">
@@ -103,26 +109,26 @@
   //     });
   //   }
   // });
-//   let element = document.querySelector("#flexSwitchCheckDefault");
-// let gst_switch = document.querySelectorAll(".gst");
+  //   let element = document.querySelector("#flexSwitchCheckDefault");
+  // let gst_switch = document.querySelectorAll(".gst");
 
-// element.addEventListener("change", () => {
-//   console.log('chnages');
-//   console.log(gst_switch);
-//   gst_switch.forEach((el) => {
-//     el.style.display = element.checked ? "inline" : "none";
-//   });
-// });
-document.addEventListener("DOMContentLoaded", () => {
-  let element = document.querySelector("#flexSwitchCheckDefault");
-  let gst_switch = document.querySelectorAll(".gst");
+  // element.addEventListener("change", () => {
+  //   console.log('chnages');
+  //   console.log(gst_switch);
+  //   gst_switch.forEach((el) => {
+  //     el.style.display = element.checked ? "inline" : "none";
+  //   });
+  // });
+  document.addEventListener("DOMContentLoaded", () => {
+    let element = document.querySelector("#flexSwitchCheckDefault");
+    let gst_switch = document.querySelectorAll(".gst");
 
-  // console.log(gst_switch); // Now this will show the correct NodeList
+    // console.log(gst_switch); // Now this will show the correct NodeList
 
-  element.addEventListener("change", () => {
-    gst_switch.forEach((el) => {
-      el.style.display = element.checked ? "inline" : "none";
+    element.addEventListener("change", () => {
+      gst_switch.forEach((el) => {
+        el.style.display = element.checked ? "inline" : "none";
+      });
     });
   });
-});
 </script>
