@@ -77,9 +77,9 @@ app.use((req, res, next) => {
   res.locals.userInfo = req.user;
   next();
 });
+app.use("/", userRouter);  // Move this first
 app.use("/listings", listingRouter);
-app.use("/search",searchRouter);
-app.use('/',userRouter);
+app.use("/search", searchRouter);
 
 
 app.get("/", (req, res) => {
@@ -103,21 +103,13 @@ app.get("/registerd", wrapAsync(async (req, res) => {
 }));
 
 //connect to database
-const dburl = process.env.ATLASDB_URL;
-main()
-  .then((res) => {
-    console.log("successfully connected");
+mongoose.connect(process.env.ATLASDB_URL)
+  .then(() => {
+    console.log("Database connected");
   })
-  .catch((e) => {
-    console.log(e);
+  .catch((err) => {
+    console.log("MongoDB Error:", err);
   });
-async function main() {
-  try {
-    await mongoose.connect(dburl);
-  } catch (e) {
-    console.log("error occured" + e);
-  }
-}
 
 //custom middleware
 //error handler when some on enter random listing id
@@ -132,6 +124,10 @@ app.use((err, req, res, next) => {
   }
   let { statusCode = 404, message } = err;
   return res.status(statusCode).render("error", { statusCode, message });
+});
+
+app.all("*", (req, res, next) => {
+  res.status(404).render("error", { err: "Page Not Found!" });
 });
 
 app.listen(port, () => {
