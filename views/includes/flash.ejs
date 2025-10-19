@@ -1,4 +1,9 @@
 <link rel="stylesheet" href="/style/flash.css">
+<% if (typeof success !== 'undefined' && success.length) { %>
+  <div class="alert alert-success col-6 offset-3" role="alert">
+    <h3><%= success %></h3>
+  </div>
+<% } %>
 <% if(success && success.length) {%>
     <div class="alert alert-success col-6 offset-3" role="alert">
         <h3><%= success %></h3>

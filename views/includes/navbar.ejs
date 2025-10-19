@@ -26,6 +26,12 @@
     <% } else { %>
     <a href="/logout">Log out</a>
      <% } %> 
+     <%if(!userInfo){%>
+    <a href="/singup" id="singup"> Sing up </a>
+    <a href="/login" id="singup"> Log in </a>
+    <%}%> <% if(userInfo){%>
+    <a href="/logout" id="singup"> Log out </a>
+    <% } %>
      
   </div>
 </nav>
