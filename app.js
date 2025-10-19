@@ -8,6 +8,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStratagey = require("passport-local");
 const User = require("./models/user.js");
+const WrapAsync = require('./utils/wrapAsync.js');
 
 const path = require("path");
 const { count } = require("console");
@@ -19,6 +20,7 @@ const method_Override = require("method-override");
 const listingRouter = require("./routes/listings.js");
 const userRouter = require('./routes/user.js');
 const searchRouter = require('./routes/search.js');
+const wrapAsync = require("./utils/wrapAsync.js");
 const app = express();
 
 //options for express sessions
@@ -86,7 +88,7 @@ app.get("/new",isLogin,(req, res) => {
 });
 
 
-app.get("/registerd", async (req, res) => {
+app.get("/registerd", wrapAsync(async (req, res) => {
   //creating fake user
   const fakeUser = new User({
     email: "arhanmohammed001@gmail.com",
@@ -95,7 +97,7 @@ app.get("/registerd", async (req, res) => {
 
   let createUser = await User.register(fakeUser, "password123");
   return res.send(createUser);
-});
+}));
 
 //connect to database
 const dburl = process.env.ATLASDB_URL;
@@ -117,9 +119,16 @@ async function main() {
 //custom middleware
 //error handler when some on enter random listing id
 
+// app.use((err, req, res, next) => {
+//   let { statusCode = 404, message } = err;
+//   return res.render("error", { statusCode, message });
+// });
 app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err); // delegate to default Express error handler
+  }
   let { statusCode = 404, message } = err;
-  return res.render("error", { statusCode, message });
+  return res.status(statusCode).render("error", { statusCode, message });
 });
 
 app.listen(port, () => {
